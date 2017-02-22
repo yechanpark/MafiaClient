@@ -860,32 +860,32 @@ public class MainView extends JFrame {
 	public void nightAction(User u){
 		switch(v.get(0).getJob()){
 		case 1:	//내가 마피아일때
-			send_Message("JOBS:MAFIA:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 2:	//내가 경찰일때
-			send_Message("JOBS:POLICE:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 3: // 의사
 			send_Message("JOBS:DOCTOR:"+ u.getId()+ ":");
 			insertText(u.getId() + "님을 살렸습니다.\n", Color.YELLOW);
 			break;
 		case 4: // 기자
-			send_Message("JOBS:REPORTER:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 5: // 영매
-			send_Message("JOBS:SOUL:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 6: // 군인
-			send_Message("JOBS:SOLDIER:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 7: // 정치가
-			send_Message("JOBS:POLITICIAN:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 8: // 테러
-			send_Message("JOBS:TERRORIST:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		case 9: // 스파이
-			send_Message("JOBS:SPY:"+ u.getId()+ ":");
+			send_Message("JOBS:"+ u.getId()+ ":");
 			break;
 		default:
 			break;
