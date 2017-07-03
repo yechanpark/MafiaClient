@@ -325,7 +325,7 @@ public class MainView extends JFrame {
 								msg = msg.trim();
 								String [] tmp2 = msg.split(":");
 								
-								//insertText("받은 메시지 : ["+ msg +"]\n", Color.BLUE);
+								insertText("받은 메시지 : ["+ msg +"]\n", Color.BLUE);
 								
 								if(tmp2[0].equals("ERROR")){
 									if(tmp2[1].equals("FULL")){
@@ -769,7 +769,7 @@ public class MainView extends JFrame {
 	}
 
 	public void init() { // 화면구성 메소드
-
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1000, 620);
 		contentPane = new JPanel();
@@ -1091,4 +1091,5 @@ public class MainView extends JFrame {
 			}
 		}
 	}
+
 }
