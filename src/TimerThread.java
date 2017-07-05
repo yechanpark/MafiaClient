@@ -18,6 +18,8 @@ public class TimerThread extends Thread{
 	public void run(){
 
 			for(int i = time; i >= 0; i--){
+				String tmp = Integer.toString(i);
+				view.setText(tmp);
 				if(running == false){
 					break;
 				}
@@ -25,8 +27,7 @@ public class TimerThread extends Thread{
 					Thread.sleep(1000);
 				}catch(Exception e){
 				}
-				String tmp = Integer.toString(i);
-				view.setText(tmp);
+				
 			}
 	}
 }
