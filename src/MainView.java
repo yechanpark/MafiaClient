@@ -334,8 +334,8 @@ public class MainView extends JFrame {
 						String msg = new String(b);
 						msg = msg.trim();
 						String[] tmp2 = msg.split(":");
-
-						// insertText("받은 메시지 : ["+ msg +"]\n", Color.BLUE);
+						System.out.println("받은 메시지 : " + msg);
+						
 
 						if (tmp2[0].equals("ERROR")) {
 							if (tmp2[1].equals("FULL")) {
@@ -441,6 +441,7 @@ public class MainView extends JFrame {
 								v.get(0).getButton().setForeground(Color.RED);
 								v.get(0).setJob(1);
 								int mNum = Integer.parseInt(tmp2[2]);
+								
 								if (mNum == 2) {
 									for (int i = 1; i < v.size(); i++) {
 										if (v.get(i).getId().equals(tmp2[3])) {
