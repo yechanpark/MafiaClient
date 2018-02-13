@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 
 public class User {
 	private String id;	// id
-	private int num; // ÀÎµ¦½º
-	private JButton button; // Ä³¸¯ÅÍ 
+	private int num; // ì¸ë±ìŠ¤
+	private JButton button; // ìºë¦­í„° 
 	private JLabel idLabel;
-	private JPanel panel; // ¸ŞÀÎºä ÆÇ³Ú
-	private int job; //Á÷¾÷
-	private boolean master = false; // ¹æÀå ±ÇÇÑ
+	private JPanel panel; // ë©”ì¸ë·° íŒë„¬
+	private int job; //ì§ì—…
+	private boolean master = false; // ë°©ì¥ ê¶Œí•œ
 	private ChatGraphic g;
 	private ChatGraphic g1;
 	private ChatGraphic g2;
@@ -27,7 +27,7 @@ public class User {
 	private ChatGraphic g7;
 	private ChatGraphic g8;
 	
-	private boolean live = true;	//»ıÁ¸¿©ºÎ
+	private boolean live = true;	//ìƒì¡´ì—¬ë¶€
 	private int index;
 	private BufferedImage bfImage;
 

@@ -1,4 +1,4 @@
-// Main.java Java Chatting Client ½ÃÀÛ ºÎºĞ C ÀÇ main() ÇÔ¼ö
+// Main.java Java Chatting Client ì‹œì‘ ë¶€ë¶„ C ì˜ main() í•¨ìˆ˜
 public class Main {
 	//static MainView mainView = new MainView("zx","33","127.0.0.1", 30000);
 	public static void main(String[] args) {

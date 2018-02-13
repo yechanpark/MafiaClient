@@ -1,6 +1,6 @@
 
-// MainView.java : Java Chatting Client ÀÇ ÇÙ½ÉºÎºĞ
-// read keyboard --> write to network (Thread ·Î Ã³¸®)
+// MainView.java : Java Chatting Client ì˜ í•µì‹¬ë¶€ë¶„
+// read keyboard --> write to network (Thread ë¡œ ì²˜ë¦¬)
 // read network --> write to textArea
 
 import java.awt.Color;
@@ -35,7 +35,7 @@ import javax.swing.text.StyledDocument;
 public class MainView extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField; // º¸³¾ ¸Ş¼¼Áö ¾²´Â°÷
+	private JTextField textField; // ë³´ë‚¼ ë©”ì„¸ì§€ ì“°ëŠ”ê³³
 
 	int[] login = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	TimerThread timer;
@@ -61,24 +61,24 @@ public class MainView extends JFrame {
 
 	JLabel timerLabel;
 	JLabel timerLabel2;
-	JButton sendBtn; // Àü¼Û¹öÆ°
-	JButton startBtn; // ½ºÅ¸Æ® ¹öÆ°
-	JButton deathBtn; // »ì¸®´Â ¹öÆ°
-	JButton liveBtn; // Á×ÀÌ´Â ¹öÆ°
+	JButton sendBtn; // ì „ì†¡ë²„íŠ¼
+	JButton startBtn; // ìŠ¤íƒ€íŠ¸ ë²„íŠ¼
+	JButton deathBtn; // ì‚´ë¦¬ëŠ” ë²„íŠ¼
+	JButton liveBtn; // ì£½ì´ëŠ” ë²„íŠ¼
 	JLabel centerLabel;
-	JTextPane textPane; // ¼ö½ÅµÈ ¸Ş¼¼Áö¸¦ ³ªÅ¸³¾ º¯¼ö
+	JTextPane textPane; // ìˆ˜ì‹ ëœ ë©”ì„¸ì§€ë¥¼ ë‚˜íƒ€ë‚¼ ë³€ìˆ˜
 	StyledDocument doc;
 	SimpleAttributeSet attribute = new SimpleAttributeSet();
 
 	private BufferedImage bfImage;
 
-	private Socket socket; // ¿¬°á¼ÒÄÏ
+	private Socket socket; // ì—°ê²°ì†Œì¼“
 	private InputStream is;
 	private OutputStream os;
 	private DataInputStream dis;
 	private DataOutputStream dos;
 
-	public MainView(String id, String password, String ip, int port)// »ı¼ºÀÚ
+	public MainView(String id, String password, String ip, int port)// ìƒì„±ì
 	{
 		this.id = id;
 		this.password = password;
@@ -88,29 +88,29 @@ public class MainView extends JFrame {
 		init();
 		start();
 
-		insertText("¸Å°³ º¯¼ö·Î ³Ñ¾î¿Â °ª : " + id + " " + password + " " + ip + " " + port + "\n", Color.YELLOW);
+		insertText("ë§¤ê°œ ë³€ìˆ˜ë¡œ ë„˜ì–´ì˜¨ ê°’ : " + id + " " + password + " " + ip + " " + port + "\n", Color.YELLOW);
 		network();
 	}
 
 	public void network() {
-		// ¼­¹ö¿¡ Á¢¼Ó
+		// ì„œë²„ì— ì ‘ì†
 		try {
 			socket = new Socket(ip, port);
-			if (socket != null) // socketÀÌ null°ªÀÌ ¾Æ´Ò¶§ Áï! ¿¬°áµÇ¾úÀ»¶§
+			if (socket != null) // socketì´ nullê°’ì´ ì•„ë‹ë•Œ ì¦‰! ì—°ê²°ë˜ì—ˆì„ë•Œ
 			{
-				Connection(); // ¿¬°á ¸Ş¼Òµå¸¦ È£Ãâ
+				Connection(); // ì—°ê²° ë©”ì†Œë“œë¥¼ í˜¸ì¶œ
 			}
 		} catch (UnknownHostException e) {
 			attribute.addAttribute(StyleConstants.Foreground, Color.BLUE);
 			try {
-				doc.insertString(0, "Á¢¼Ó ¿¡·¯", attribute);
+				doc.insertString(0, "ì ‘ì† ì—ëŸ¬", attribute);
 			} catch (BadLocationException ee) {
 				ee.printStackTrace();
 			}
 		} catch (IOException e) {
 			attribute.addAttribute(StyleConstants.Foreground, Color.BLUE);
 			try {
-				doc.insertString(0, "Á¢¼Ó ¿¡·¯", attribute);
+				doc.insertString(0, "ì ‘ì† ì—ëŸ¬", attribute);
 			} catch (BadLocationException ee) {
 				ee.printStackTrace();
 			}
@@ -303,8 +303,8 @@ public class MainView extends JFrame {
 		timer.getLabel().setVisible(true);
 	}
 
-	public void Connection() { // ½ÇÁ÷ ÀûÀÎ ¸Ş¼Òµå ¿¬°áºÎºĞ
-		try { // ½ºÆ®¸² ¼³Á¤
+	public void Connection() { // ì‹¤ì§ ì ì¸ ë©”ì†Œë“œ ì—°ê²°ë¶€ë¶„
+		try { // ìŠ¤íŠ¸ë¦¼ ì„¤ì •
 			is = socket.getInputStream();
 			dis = new DataInputStream(is);
 
@@ -314,15 +314,15 @@ public class MainView extends JFrame {
 		} catch (IOException e) {
 			attribute.addAttribute(StyleConstants.Foreground, Color.BLUE);
 			try {
-				doc.insertString(0, "½ºÆ®¸² ¼³Á¤ ¿¡·¯", attribute);
+				doc.insertString(0, "ìŠ¤íŠ¸ë¦¼ ì„¤ì • ì—ëŸ¬", attribute);
 			} catch (BadLocationException ee) {
 				ee.printStackTrace();
 			}
 		}
 		String tmp = id + ":" + password + ":";
-		send_Message(tmp); // Á¤»óÀûÀ¸·Î ¿¬°áµÇ¸é ³ªÀÇ id¸¦ Àü¼Û
+		send_Message(tmp); // ì •ìƒì ìœ¼ë¡œ ì—°ê²°ë˜ë©´ ë‚˜ì˜ idë¥¼ ì „ì†¡
 
-		Thread th = new Thread(new Runnable() { // ½º·¹µå¸¦ µ¹·Á¼­ ¼­¹ö·ÎºÎÅÍ ¸Ş¼¼Áö¸¦ ¼ö½Å
+		Thread th = new Thread(new Runnable() { // ìŠ¤ë ˆë“œë¥¼ ëŒë ¤ì„œ ì„œë²„ë¡œë¶€í„° ë©”ì„¸ì§€ë¥¼ ìˆ˜ì‹ 
 
 			@SuppressWarnings("null")
 			@Override
@@ -334,19 +334,19 @@ public class MainView extends JFrame {
 						String msg = new String(b);
 						msg = msg.trim();
 						String[] tmp2 = msg.split(":");
-						System.out.println("¹ŞÀº ¸Ş½ÃÁö : " + msg);
+						System.out.println("ë°›ì€ ë©”ì‹œì§€ : " + msg);
 						
 
 						if (tmp2[0].equals("ERROR")) {
 							if (tmp2[1].equals("FULL")) {
-								insertText("¹æÀÌ ²Ë Ã¡½À´Ï´Ù.\n", Color.YELLOW);
+								insertText("ë°©ì´ ê½‰ ì°¼ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 							} else if (tmp2[1].equals("PLAYING")) {
-								insertText("°ÔÀÓÀÌ ÁøÇàÁßÀÔ´Ï´Ù.\n", Color.YELLOW);
+								insertText("ê²Œì„ì´ ì§„í–‰ì¤‘ì…ë‹ˆë‹¤.\n", Color.YELLOW);
 							}
 						} else if (tmp2[0].equals("USINGID")) {
-							insertText("Á¢¼ÓÁßÀÎ ¾ÆÀÌµğ ÀÔ´Ï´Ù.\n", Color.YELLOW);
+							insertText("ì ‘ì†ì¤‘ì¸ ì•„ì´ë”” ì…ë‹ˆë‹¤.\n", Color.YELLOW);
 						} else if (tmp2[0].equals("WRONGID")) {
-							insertText("¾ÆÀÌµğ³ª ºñ¹Ğ¹øÈ£°¡ Æ²¸³´Ï´Ù.\n", Color.YELLOW);
+							insertText("ì•„ì´ë””ë‚˜ ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤.\n", Color.YELLOW);
 						} else if (tmp2[0].equals("LOGOUT")) {
 							if (tmp2[1].equals("BEFORE")) {
 								for (int i = 1; i < v.size(); i++) {
@@ -364,7 +364,7 @@ public class MainView extends JFrame {
 											startBtn.setVisible(true);
 										}
 										v.removeElement(v.get(i));
-										insertText(tmp2[2] + "´ÔÀÌ ·Î±×¾Æ¿ô ÇÏ¼Ì½À´Ï´Ù.\n", Color.YELLOW);
+										insertText(tmp2[2] + "ë‹˜ì´ ë¡œê·¸ì•„ì›ƒ í•˜ì…¨ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 									}
 								}
 							} else if (tmp2[1].equals("AFTER")) {
@@ -380,12 +380,12 @@ public class MainView extends JFrame {
 											}
 										}
 										v.removeElement(v.get(i));
-										insertText(tmp2[2] + "´ÔÀÇ ¿¬°áÀÌ ²÷°å½À´Ï´Ù..\n", Color.YELLOW);
+										insertText(tmp2[2] + "ë‹˜ì˜ ì—°ê²°ì´ ëŠê²¼ìŠµë‹ˆë‹¤..\n", Color.YELLOW);
 									}
 								}
 							}
-						} else if (tmp2[0].equals("ULIST")) { // ÀÚ½Åº¸´Ù ¸ÕÀúÁ¢¼ÓÇÑ À¯Àú
-																// Ã³¸®
+						} else if (tmp2[0].equals("ULIST")) { // ìì‹ ë³´ë‹¤ ë¨¼ì €ì ‘ì†í•œ ìœ ì €
+																// ì²˜ë¦¬
 							int userNum = Integer.parseInt(tmp2[1]);
 							characterSetting(id);
 							send_Message("LOGIN:" + id + ":");
@@ -407,7 +407,7 @@ public class MainView extends JFrame {
 									characterSetting(tmp2[2]);
 									break;
 								case 0:
-									centerLabel.setText("´ç½ÅÀº ¹æÀåÀÔ´Ï´Ù");
+									centerLabel.setText("ë‹¹ì‹ ì€ ë°©ì¥ì…ë‹ˆë‹¤");
 									startBtn.setVisible(true);
 									v.get(0).setMaster(true);
 									break;
@@ -415,14 +415,14 @@ public class MainView extends JFrame {
 									break;
 								}
 							}
-						} else if (tmp2[0].equals("LOGIN")) { // ÀÚ½Åº¸´Ù µÚ¿¡ Á¢¼ÓÇÏ´Â À¯Àú
-																// ¼¼ÆÃ
+						} else if (tmp2[0].equals("LOGIN")) { // ìì‹ ë³´ë‹¤ ë’¤ì— ì ‘ì†í•˜ëŠ” ìœ ì €
+																// ì„¸íŒ…
 							if (tmp2[1].equals(id)) {
 
 							} else
 								characterSetting(tmp2[1]);
-						} else if (tmp2[0].equals("START")) { // °³ÀÓ½ÃÀÛ + Á÷¾÷ ¹èÁ¤
-							insertText("°ÔÀÓÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù.\nÁö±İÀº ¹ãÀÔ´Ï´Ù.\n", Color.YELLOW);
+						} else if (tmp2[0].equals("START")) { // ê°œì„ì‹œì‘ + ì§ì—… ë°°ì •
+							insertText("ê²Œì„ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤.\nì§€ê¸ˆì€ ë°¤ì…ë‹ˆë‹¤.\n", Color.YELLOW);
 							if (bgSound.playing == true)
 								bgSound.stop();
 							bgSound.play("sound/Uka.wav");
@@ -432,10 +432,10 @@ public class MainView extends JFrame {
 							timer.start();
 							timerLabel.setVisible(true);
 							timerLabel2.setVisible(true);
-							state = 4; // ¹ã »óÅÂ
+							state = 4; // ë°¤ ìƒíƒœ
 							if (tmp2[1].equals("MAFIA")) {
-								insertText("´ç½ÅÀº ¸¶ÇÇ¾Æ ÀÔ´Ï´Ù.\n", Color.YELLOW);
-								centerLabel.setText("´ç½ÅÀº ¸¶ÇÇ¾Æ ÀÔ´Ï´Ù");
+								insertText("ë‹¹ì‹ ì€ ë§ˆí”¼ì•„ ì…ë‹ˆë‹¤.\n", Color.YELLOW);
+								centerLabel.setText("ë‹¹ì‹ ì€ ë§ˆí”¼ì•„ ì…ë‹ˆë‹¤");
 								setBfImage("img/mafia.png");
 								v.get(0).getButton().setIcon(new ImageIcon(bfImage));
 								v.get(0).getButton().setForeground(Color.RED);
@@ -465,39 +465,39 @@ public class MainView extends JFrame {
 								setBfImage("img/doctor.png");
 								v.get(0).getButton().setIcon(new ImageIcon(bfImage));
 								v.get(0).setJob(3);
-								civilSetting("´ç½ÅÀº ÀÇ»çÀÔ´Ï´Ù.");
+								civilSetting("ë‹¹ì‹ ì€ ì˜ì‚¬ì…ë‹ˆë‹¤.");
 							} else if (tmp2[1].equals("POLICE")) {
 								setBfImage("img/police.png");
 								v.get(0).getButton().setIcon(new ImageIcon(bfImage));
 								v.get(0).setJob(2);
-								civilSetting("´ç½ÅÀº °æÂûÀÔ´Ï´Ù.");
+								civilSetting("ë‹¹ì‹ ì€ ê²½ì°°ì…ë‹ˆë‹¤.");
 							} else if (tmp2[1].equals("REPORTER")) {
 								setBfImage("img/reporter.png");
 								v.get(0).getButton().setIcon(new ImageIcon(bfImage));
 								v.get(0).setJob(4);
-								civilSetting("´ç½ÅÀº ±âÀÚÀÔ´Ï´Ù.");
+								civilSetting("ë‹¹ì‹ ì€ ê¸°ìì…ë‹ˆë‹¤.");
 							} else if (tmp2[1].equals("POLITICIAN")) {
 								setBfImage("img/politician.png");
 								v.get(0).getButton().setIcon(new ImageIcon(bfImage));
 								v.get(0).setJob(7);
-								civilSetting("´ç½ÅÀº Á¤Ä¡ÀÎÀÔ´Ï´Ù.");
+								civilSetting("ë‹¹ì‹ ì€ ì •ì¹˜ì¸ì…ë‹ˆë‹¤.");
 							} else if (tmp2[1].equals("CIVIL")) {
 								v.get(0).setJob(0);
-								civilSetting("´ç½ÅÀº ½Ã¹ÎÀÔ´Ï´Ù.");
+								civilSetting("ë‹¹ì‹ ì€ ì‹œë¯¼ì…ë‹ˆë‹¤.");
 							} else {
 								insertText(msg, Color.BLUE);
 							}
-							if (v.get(0).getJob() != 0 && v.get(0).getJob() != 4) { // ÀÏ¹İ
-																					// ½Ã¹ÎÀÌ
-																					// ¾Æ´Ò
-																					// ¶§
+							if (v.get(0).getJob() != 0 && v.get(0).getJob() != 4) { // ì¼ë°˜
+																					// ì‹œë¯¼ì´
+																					// ì•„ë‹
+																					// ë•Œ
 								allButtonTrueEnable();
 							}
 						} else if (tmp2[0].equals("MORNING")) {
 							bgSound.stop();
 							bgSound.play("sound/L.wav");
-							insertText("¾ÆÄ§ÀÌ ¹à¾Ò½À´Ï´Ù.\n", Color.YELLOW);
-							if (tmp2[1].equals("MDIE")) { // »ìÇØ´çÇÏ´Â »ç¶÷ÀÌ ÀÖÀ»¶§
+							insertText("ì•„ì¹¨ì´ ë°ì•˜ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
+							if (tmp2[1].equals("MDIE")) { // ì‚´í•´ë‹¹í•˜ëŠ” ì‚¬ëŒì´ ìˆì„ë•Œ
 								for (int i = 0; i < v.size(); i++) {
 									if (v.get(i).getId().equals(tmp2[2])) {
 										setBfImage("img/death.png");
@@ -506,30 +506,30 @@ public class MainView extends JFrame {
 									}
 								}
 								deathSound.play("sound/scream.wav");
-								insertText(tmp2[2] + "´ÔÀÌ »ìÇØ´çÇß½À´Ï´Ù.\n", Color.YELLOW);
-							} else if (tmp2[1].equals("HEAL")) { // ÀÇ»ç°¡ »ì·ÈÀ»¶§
-								insertText("ÀÇ»ç°¡ " + tmp2[2] + "´ÔÀ» »ì·È½À´Ï´Ù\n", Color.YELLOW);
+								insertText(tmp2[2] + "ë‹˜ì´ ì‚´í•´ë‹¹í–ˆìŠµë‹ˆë‹¤.\n", Color.YELLOW);
+							} else if (tmp2[1].equals("HEAL")) { // ì˜ì‚¬ê°€ ì‚´ë ¸ì„ë•Œ
+								insertText("ì˜ì‚¬ê°€ " + tmp2[2] + "ë‹˜ì„ ì‚´ë ¸ìŠµë‹ˆë‹¤\n", Color.YELLOW);
 							} else if (tmp2[1].equals("NODIE")) {
-								insertText("Áö³­ ¹ã¿£ ¾Æ¹«µµ Á×Áö ¾Ê¾Ò½À´Ï´Ù\n", Color.YELLOW);
+								insertText("ì§€ë‚œ ë°¤ì—” ì•„ë¬´ë„ ì£½ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤\n", Color.YELLOW);
 							}
 
 							if (tmp2[3].equals("REPORTER")) {
 								for (int i = 0; i < v.size(); i++) {
 									if (v.get(i).getId().equals(tmp2[4])) {
-										insertText("±âÀÚ°¡ " + tmp2[4] + "´ÔÀ»" + tmp2[5] + "¶ó°í Á¦º¸Çß½À´Ï´Ù.\n", Color.YELLOW);
+										insertText("ê¸°ìê°€ " + tmp2[4] + "ë‹˜ì„" + tmp2[5] + "ë¼ê³  ì œë³´í–ˆìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 									}
 								}
 							}
-							state = 1; // ³· »óÅÂ
+							state = 1; // ë‚® ìƒíƒœ
 							timerRestart(20);
 							textField.setEnabled(true);
 							textField.setBackground(Color.WHITE);
-							centerLabel.setText("¾ÆÄ§ÀÌ ¹à¾Ò½À´Ï´Ù");
+							centerLabel.setText("ì•„ì¹¨ì´ ë°ì•˜ìŠµë‹ˆë‹¤");
 							allButtonFalseEnable();
-						} else if (tmp2[0].equals("NIGHT")) { // ¹ã¿¡ Á÷¾÷ È°µ¿
+						} else if (tmp2[0].equals("NIGHT")) { // ë°¤ì— ì§ì—… í™œë™
 							bgSound.stop();
 							bgSound.play("sound/Uka.wav");
-							if (tmp2[1].equals("VDIE")) { // ÀçÆÇÀ¸·Î Á×À»¶§
+							if (tmp2[1].equals("VDIE")) { // ì¬íŒìœ¼ë¡œ ì£½ì„ë•Œ
 								for (int i = 0; i < v.size(); i++) {
 									if (v.get(i).getId().equals(tmp2[2])) {
 										setBfImage("img/death.png");
@@ -538,21 +538,21 @@ public class MainView extends JFrame {
 									}
 								}
 								deathSound.play("sound/scream.wav");
-								insertText(tmp2[2] + "´ÔÀÌ »çÇü´çÇß½À´Ï´Ù.\n", Color.YELLOW);
+								insertText(tmp2[2] + "ë‹˜ì´ ì‚¬í˜•ë‹¹í–ˆìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 							} else if (tmp2[1].equals("NODIE")) {
-								insertText("»çÇüÀ» ÁıÇàÇÏÁö ¾Ê¾Ò½À´Ï´Ù.\n", Color.YELLOW);
+								insertText("ì‚¬í˜•ì„ ì§‘í–‰í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 							} else if (tmp2[1].equals("NOVOTE")) {
-								insertText("°ú¹İ¼ö°¡ ³Ñ´Â Ç¥¸¦ ¹ŞÀºÀÚ°¡ ¾ø½À´Ï´Ù.\n", Color.YELLOW);
+								insertText("ê³¼ë°˜ìˆ˜ê°€ ë„˜ëŠ” í‘œë¥¼ ë°›ì€ìê°€ ì—†ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 							}
 							deathBtn.setVisible(false);
 							liveBtn.setVisible(false);
-							insertText("¹ãÀÌ µÇ¾ú½À´Ï´Ù.\n", Color.YELLOW);
+							insertText("ë°¤ì´ ë˜ì—ˆìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 							state = 4;
 							timerRestart(15);
-							if (v.get(0).getJob() == 1) { // ¸¶ÇÇ¾ÆÀÏ¶§
+							if (v.get(0).getJob() == 1) { // ë§ˆí”¼ì•„ì¼ë•Œ
 								textField.setEnabled(true);
 								textField.setBackground(Color.WHITE);
-								centerLabel.setText("Á×ÀÏ »ç¶÷À» ¼±ÅÃÇÏ¼¼¿ä");
+								centerLabel.setText("ì£½ì¼ ì‚¬ëŒì„ ì„ íƒí•˜ì„¸ìš”");
 								for (int i = 0; i < v.size(); i++) {
 									if (v.get(i).getJob() != 1) {
 										if (v.get(i).getLive() == true) {
@@ -560,37 +560,37 @@ public class MainView extends JFrame {
 										}
 									}
 								}
-							} else if (v.get(0).getJob() == 2 && v.get(0).getLive() == true) { // °æÂûÀÏ¶§
-								centerLabel.setText("Á¶»ç ÇÒ »ç¶÷À» ¼±ÅÃÇÏ¼¼¿ä");
+							} else if (v.get(0).getJob() == 2 && v.get(0).getLive() == true) { // ê²½ì°°ì¼ë•Œ
+								centerLabel.setText("ì¡°ì‚¬ í•  ì‚¬ëŒì„ ì„ íƒí•˜ì„¸ìš”");
 								allButtonTrueEnable();
-							} else if (v.get(0).getJob() == 3 && v.get(0).getLive() == true) { // ÀÇ»çÀÏ¶§
-								centerLabel.setText("Ä¡·áÇÒ »ç¶÷À» ¼±ÅÃÇÏ¼¼¿ä");
+							} else if (v.get(0).getJob() == 3 && v.get(0).getLive() == true) { // ì˜ì‚¬ì¼ë•Œ
+								centerLabel.setText("ì¹˜ë£Œí•  ì‚¬ëŒì„ ì„ íƒí•˜ì„¸ìš”");
 								allButtonTrueEnable();
-							} else if (v.get(0).getJob() == 4 && v.get(0).getLive() == true) { // ±âÀÚÀÏ¶§
+							} else if (v.get(0).getJob() == 4 && v.get(0).getLive() == true) { // ê¸°ìì¼ë•Œ
 								allButtonTrueEnable();
-								centerLabel.setText("Á¦º¸ÇÒ »ç¶÷À» ¼±ÅÃÇÏ¼¼¿ä");
-							} else if (v.get(0).getJob() == 7) { // Á¤Ä¡°¡ÀÏ¶§
-								centerLabel.setText("¹ãÀÌ µÇ¾ú½À´Ï´Ù");
-							} else if (v.get(0).getJob() == 0) { // ÀÏ¹İ ½Ã¹ÎÀÏ¶§
-								centerLabel.setText("¹ãÀÌ µÇ¾ú½À´Ï´Ù");
+								centerLabel.setText("ì œë³´í•  ì‚¬ëŒì„ ì„ íƒí•˜ì„¸ìš”");
+							} else if (v.get(0).getJob() == 7) { // ì •ì¹˜ê°€ì¼ë•Œ
+								centerLabel.setText("ë°¤ì´ ë˜ì—ˆìŠµë‹ˆë‹¤");
+							} else if (v.get(0).getJob() == 0) { // ì¼ë°˜ ì‹œë¯¼ì¼ë•Œ
+								centerLabel.setText("ë°¤ì´ ë˜ì—ˆìŠµë‹ˆë‹¤");
 							}
 							// if(v.get(0).getLive() == false){
 							// textField.setEnabled(true);
 							// textField.setBackground(Color.WHITE);
 							// }
-						} else if (tmp2[0].equals("VOTE")) { // ³· ÅõÇ¥
-							insertText("ÅõÇ¥ ÇÏ¼¼¿ä.\n", Color.YELLOW);
-							centerLabel.setText("»çÇü´ë¿¡ ¿Ã¸± »ç¶÷À» »Ì¾ÆÁÖ¼¼¿ä");
+						} else if (tmp2[0].equals("VOTE")) { // ë‚® íˆ¬í‘œ
+							insertText("íˆ¬í‘œ í•˜ì„¸ìš”.\n", Color.YELLOW);
+							centerLabel.setText("ì‚¬í˜•ëŒ€ì— ì˜¬ë¦´ ì‚¬ëŒì„ ë½‘ì•„ì£¼ì„¸ìš”");
 							timerRestart(10);
-							state = 2; // Á×ÀÏ»ç¶÷ ÅõÇ¥ÁßÀÎ »óÅÂ
-							if (v.get(0).getLive() == true) { // »ì¾ÆÀÖ´Â »ç¶÷¸¸ ÅõÇ¥
+							state = 2; // ì£½ì¼ì‚¬ëŒ íˆ¬í‘œì¤‘ì¸ ìƒíƒœ
+							if (v.get(0).getLive() == true) { // ì‚´ì•„ìˆëŠ” ì‚¬ëŒë§Œ íˆ¬í‘œ
 								allButtonTrueEnable();
 							}
-						} else if (tmp2[0].equals("PLEAD")) { // ÃÖÈÄÀÇ º¯·Ğ
-							insertText(tmp2[1] + "´ÔÀÌ °¡Àå ¸¹Àº Ç¥¸¦ ¹Ş¾Ò½À´Ï´Ù.\n" + tmp2[1] + "´Ô ÃÖÈÄÀÇ º¯·Ğ\n", Color.YELLOW);
-							centerLabel.setText(tmp2[1] + "´Ô ÃÖÈÄÀÇ º¯·Ğ");
+						} else if (tmp2[0].equals("PLEAD")) { // ìµœí›„ì˜ ë³€ë¡ 
+							insertText(tmp2[1] + "ë‹˜ì´ ê°€ì¥ ë§ì€ í‘œë¥¼ ë°›ì•˜ìŠµë‹ˆë‹¤.\n" + tmp2[1] + "ë‹˜ ìµœí›„ì˜ ë³€ë¡ \n", Color.YELLOW);
+							centerLabel.setText(tmp2[1] + "ë‹˜ ìµœí›„ì˜ ë³€ë¡ ");
 							timerRestart(10);
-							state = 3; // ÃÖÈÄÀÇº¯·Ğ + Âù¹İÅõÇ¥½Ã°£
+							state = 3; // ìµœí›„ì˜ë³€ë¡  + ì°¬ë°˜íˆ¬í‘œì‹œê°„
 							if (v.get(0).getLive() == true) {
 								if (tmp2[1].equals(id)) {
 								} else {
@@ -598,46 +598,46 @@ public class MainView extends JFrame {
 									textField.setBackground(Color.BLACK);
 								}
 							}
-						} else if (tmp2[0].equals("VOTE2")) { // Á×ÀÏÁö »ì¸±Áö ÅõÇ¥
-							insertText("º¯·Ğ½Ã°£ÀÌ ³¡³µ½À´Ï´Ù\n»çÇüÀ» ÁıÇàÇÏ½Ã°Ú½À´Ï±î?\n", Color.YELLOW);
-							centerLabel.setText("»çÇüÀ» ÁıÇàÇÏ½Ã°Ú½À´Ï±î?\n");
+						} else if (tmp2[0].equals("VOTE2")) { // ì£½ì¼ì§€ ì‚´ë¦´ì§€ íˆ¬í‘œ
+							insertText("ë³€ë¡ ì‹œê°„ì´ ëë‚¬ìŠµë‹ˆë‹¤\nì‚¬í˜•ì„ ì§‘í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n", Color.YELLOW);
+							centerLabel.setText("ì‚¬í˜•ì„ ì§‘í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n");
 							timerRestart(7);
-							if (v.get(0).getLive() == true) { // »ì¾ÆÀÖ´Â »ç¶÷¸¸ ÅõÇ¥
+							if (v.get(0).getLive() == true) { // ì‚´ì•„ìˆëŠ” ì‚¬ëŒë§Œ íˆ¬í‘œ
 								textField.setEnabled(false);
 								textField.setBackground(Color.BLACK);
 								deathBtn.setVisible(true);
 								liveBtn.setVisible(true);
 							}
-						} else if (tmp2[0].equals("RESULTPOLICE")) { // °æÂû ÅõÇ¥ °á°ú
-																		// Á¶È¸
+						} else if (tmp2[0].equals("RESULTPOLICE")) { // ê²½ì°° íˆ¬í‘œ ê²°ê³¼
+																		// ì¡°íšŒ
 							if (tmp2[1].equals("ISMAFIA")) {
-								insertText("´ë»óÀº ¸¶ÇÇ¾Æ ÀÔ´Ï´Ù\n", Color.YELLOW);
-								centerLabel.setText("´ë»óÀº ¸¶ÇÇ¾ÆÀÔ´Ï´Ù");
+								insertText("ëŒ€ìƒì€ ë§ˆí”¼ì•„ ì…ë‹ˆë‹¤\n", Color.YELLOW);
+								centerLabel.setText("ëŒ€ìƒì€ ë§ˆí”¼ì•„ì…ë‹ˆë‹¤");
 							} else {
-								insertText("´ë»óÀº ¸¶ÇÇ¾Æ°¡ ¾Æ´Õ´Ï´Ù.\n", Color.YELLOW);
-								centerLabel.setText("´ë»óÀº ¸¶ÇÇ¾Æ°¡ ¾Æ´Õ´Ï´Ù.");
+								insertText("ëŒ€ìƒì€ ë§ˆí”¼ì•„ê°€ ì•„ë‹™ë‹ˆë‹¤.\n", Color.YELLOW);
+								centerLabel.setText("ëŒ€ìƒì€ ë§ˆí”¼ì•„ê°€ ì•„ë‹™ë‹ˆë‹¤.");
 							}
 						} else if (tmp2[0].equals("RESULTREPORTER")) {
-							insertText("Ã¹³¯ ¹ã¿¡´Â ÃëÀç¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.\n", Color.YELLOW);
-						} else if (tmp2[0].equals("NORMALVOTE")) { // ÀçÆÇ ÅõÇ¥ °úÁ¤
-																	// º¸¿©ÁÖ±â
-							insertText("[ " + tmp2[2] + " ] ´Ô  " + tmp2[1] + " Ç¥\n", Color.YELLOW);
-						} else if (tmp2[0].equals("USERLESS")) { // ÀÎ¿øÀÌ ºÎÁ·ÇØ¼­ ½ÃÀÛ
-																	// ¸øÇÒ¶§
+							insertText("ì²«ë‚  ë°¤ì—ëŠ” ì·¨ì¬ë¥¼ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
+						} else if (tmp2[0].equals("NORMALVOTE")) { // ì¬íŒ íˆ¬í‘œ ê³¼ì •
+																	// ë³´ì—¬ì£¼ê¸°
+							insertText("[ " + tmp2[2] + " ] ë‹˜  " + tmp2[1] + " í‘œ\n", Color.YELLOW);
+						} else if (tmp2[0].equals("USERLESS")) { // ì¸ì›ì´ ë¶€ì¡±í•´ì„œ ì‹œì‘
+																	// ëª»í• ë•Œ
 							startBtn.setVisible(true);
-							insertText("ÀÎ¿øÀÌ ºÎÁ·ÇÕ´Ï´Ù\n", Color.YELLOW);
-						} else if (tmp2[0].equals("GAMEOVER")) { // °ÔÀÓ ³¡
+							insertText("ì¸ì›ì´ ë¶€ì¡±í•©ë‹ˆë‹¤\n", Color.YELLOW);
+						} else if (tmp2[0].equals("GAMEOVER")) { // ê²Œì„ ë
 							bgSound.stop();
-							if (tmp2[1].equals("MAFIA")) { // ¸¶ÇÇ¾Æ°¡ ÀÌ°åÀ»‹š
-								insertText("¸¶ÇÇ¾Æ ½Â¸®!!\n", Color.YELLOW);
-								centerLabel.setText("¸¶ÇÇ¾Æ ½Â¸®");
+							if (tmp2[1].equals("MAFIA")) { // ë§ˆí”¼ì•„ê°€ ì´ê²¼ì„ï¿½ï¿½
+								insertText("ë§ˆí”¼ì•„ ìŠ¹ë¦¬!!\n", Color.YELLOW);
+								centerLabel.setText("ë§ˆí”¼ì•„ ìŠ¹ë¦¬");
 								if (v.get(0).getJob() == 1)
 									bgSound.play("sound/win.wav");
 								else
 									bgSound.play("sound/lose.wav");
-							} else { // ½Ã¹ÎÀÌ ÀÌ°åÀ»‹š
-								insertText("½Ã¹Î ½Â¸®!!\n", Color.YELLOW);
-								centerLabel.setText("½Ã¹Î ½Â¸®");
+							} else { // ì‹œë¯¼ì´ ì´ê²¼ì„ï¿½ï¿½
+								insertText("ì‹œë¯¼ ìŠ¹ë¦¬!!\n", Color.YELLOW);
+								centerLabel.setText("ì‹œë¯¼ ìŠ¹ë¦¬");
 								if (v.get(0).getJob() == 1)
 									bgSound.play("sound/lose.wav");
 								else
@@ -654,15 +654,15 @@ public class MainView extends JFrame {
 							for (int i = 0; i < v.size(); i++) {
 								v.get(i).setLive(true);
 							}
-						} else if (tmp2[0].equals("MSG")) { // ÀÏ¹İ Ã¤ÆÃ ¸Ş½ÃÁö ¸¶ÇÇ¾Æ,
-															// À¯·É, ½Ã¹Î ±¸ºĞ
+						} else if (tmp2[0].equals("MSG")) { // ì¼ë°˜ ì±„íŒ… ë©”ì‹œì§€ ë§ˆí”¼ì•„,
+															// ìœ ë ¹, ì‹œë¯¼ êµ¬ë¶„
 							String[] tmp3 = msg.split(":", 4);
 							String tmp = null;
 							tmp = String.format("[%s] : %s", tmp3[1], tmp3[2]);
 							if (tmp3[1].equals(id)) {
 								playChatGraphicThread(0, tmp);
 							} else {
-								if (v.get(0).getJob() == 1) { // ³»°¡ ¸¶ÇÇ¾ÆÀÏ ¶§
+								if (v.get(0).getJob() == 1) { // ë‚´ê°€ ë§ˆí”¼ì•„ì¼ ë•Œ
 									for (int i = 1; i < v.size(); i++) {
 										if (v.get(i).getId().equals(tmp3[1])) {
 											if (v.get(i).getJob() == 1 && v.get(i).getLive() == true) {
@@ -677,7 +677,7 @@ public class MainView extends JFrame {
 											}
 										}
 									}
-								} else { // ³»°¡ ½Ã¹Î ¶Ç´Â ´Ù¸¥Á÷¾÷ÀÏ ¶§
+								} else { // ë‚´ê°€ ì‹œë¯¼ ë˜ëŠ” ë‹¤ë¥¸ì§ì—…ì¼ ë•Œ
 									if (state != 4) {
 										if (v.get(0).getLive() == true && state == 0) {
 											for (int i = 1; i < v.size(); i++) {
@@ -717,13 +717,13 @@ public class MainView extends JFrame {
 						}
 
 					} catch (IOException e) {
-						// textArea.append("¸Ş¼¼Áö ¼ö½Å ¿¡·¯!!\n");
-						// ¼­¹ö¿Í ¼ÒÄÏ Åë½Å¿¡ ¹®Á¦°¡ »ı°åÀ» °æ¿ì ¼ÒÄÏÀ» ´İ´Â´Ù
+						// textArea.append("ë©”ì„¸ì§€ ìˆ˜ì‹  ì—ëŸ¬!!\n");
+						// ì„œë²„ì™€ ì†Œì¼“ í†µì‹ ì— ë¬¸ì œê°€ ìƒê²¼ì„ ê²½ìš° ì†Œì¼“ì„ ë‹«ëŠ”ë‹¤
 						exit();
 						break;
 					}
-				} // while¹® ³¡
-			}// run¸Ş¼Òµå ³¡
+				} // whileë¬¸ ë
+			}// runë©”ì†Œë“œ ë
 		});
 
 		th.start();
@@ -740,7 +740,7 @@ public class MainView extends JFrame {
 		}
 	}
 
-	public void send_Message(String str) { // ¼­¹ö·Î ¸Ş¼¼Áö¸¦ º¸³»´Â ¸Ş¼Òµå
+	public void send_Message(String str) { // ì„œë²„ë¡œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ëŠ” ë©”ì†Œë“œ
 		try {
 			byte[] bb;
 			byte[] bb2 = new byte[128];
@@ -753,12 +753,12 @@ public class MainView extends JFrame {
 			}
 			dos.write(bb2, 0, 128);
 		} catch (IOException e) {
-			// textArea.append("¸Ş¼¼Áö ¼Û½Å ¿¡·¯!!\n");
+			// textArea.append("ë©”ì„¸ì§€ ì†¡ì‹  ì—ëŸ¬!!\n");
 		}
-		// insertText("º¸³½ ¸Ş½ÃÁö:["+ str +"]\n",Color.MAGENTA);
+		// insertText("ë³´ë‚¸ ë©”ì‹œì§€:["+ str +"]\n",Color.MAGENTA);
 	}
 
-	public void init() { // È­¸é±¸¼º ¸Ş¼Òµå
+	public void init() { // í™”ë©´êµ¬ì„± ë©”ì†Œë“œ
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1000, 620);
@@ -783,12 +783,12 @@ public class MainView extends JFrame {
 		textField.setDocument(new JTextFieldLimit(20));
 		contentPane.add(textField);
 
-		sendBtn = new JButton("Àü¼Û");
+		sendBtn = new JButton("ì „ì†¡");
 		sendBtn.setBounds(916, 532, 60, 32);
 		sendBtn.setForeground(Color.WHITE);
 		sendBtn.setBackground(Color.BLACK);
 		contentPane.add(sendBtn);
-		textPane.setEditable(false); // »ç¿ëÀÚ°¡ ¼öÁ¤¸øÇÏ°Ô ¸·´Â´Ù
+		textPane.setEditable(false); // ì‚¬ìš©ìê°€ ìˆ˜ì •ëª»í•˜ê²Œ ë§‰ëŠ”ë‹¤
 
 		startBtn = new JButton("start");
 		startBtn.setBounds(310, 350, 80, 30);
@@ -803,13 +803,13 @@ public class MainView extends JFrame {
 		contentPane.add(timerLabel, 2);
 		timerLabel.setVisible(false);
 
-		timerLabel2 = new JLabel("³²Àº ½Ã°£");
+		timerLabel2 = new JLabel("ë‚¨ì€ ì‹œê°„");
 		timerLabel2.setBounds(325, 220, 100, 30);
 		timerLabel2.setForeground(Color.YELLOW);
 		contentPane.add(timerLabel2, 2);
 		timerLabel2.setVisible(false);
 
-		centerLabel = new JLabel("È¯¿µÇÕ´Ï´Ù.", JLabel.CENTER);
+		centerLabel = new JLabel("í™˜ì˜í•©ë‹ˆë‹¤.", JLabel.CENTER);
 		centerLabel.setBounds(200, 200, 300, 200);
 		centerLabel.setBackground(Color.red);
 		centerLabel.setForeground(Color.white);
@@ -838,9 +838,9 @@ public class MainView extends JFrame {
 		setVisible(true);
 	}
 
-	public void start() { // ¾×¼ÇÀÌº¥Æ® ÁöÁ¤ ¸Ş¼Òµå
+	public void start() { // ì•¡ì…˜ì´ë²¤íŠ¸ ì§€ì • ë©”ì†Œë“œ
 		action = new Myaction();
-		sendBtn.addActionListener(action); // ³»ºÎÅ¬·¡½º·Î ¾×¼Ç ¸®½º³Ê¸¦ »ó¼Ó¹ŞÀº Å¬·¡½º·Î
+		sendBtn.addActionListener(action); // ë‚´ë¶€í´ë˜ìŠ¤ë¡œ ì•¡ì…˜ ë¦¬ìŠ¤ë„ˆë¥¼ ìƒì†ë°›ì€ í´ë˜ìŠ¤ë¡œ
 		textField.addActionListener(action);
 		startBtn.addActionListener(action);
 		deathBtn.addActionListener(action);
@@ -849,32 +849,32 @@ public class MainView extends JFrame {
 
 	public void nightAction(User u) {
 		switch (v.get(0).getJob()) {
-		case 1: // ³»°¡ ¸¶ÇÇ¾ÆÀÏ¶§
+		case 1: // ë‚´ê°€ ë§ˆí”¼ì•„ì¼ë•Œ
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 2: // ³»°¡ °æÂûÀÏ¶§
+		case 2: // ë‚´ê°€ ê²½ì°°ì¼ë•Œ
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 3: // ÀÇ»ç
+		case 3: // ì˜ì‚¬
 			send_Message("JOBS:DOCTOR:" + u.getId() + ":");
-			insertText(u.getId() + "´ÔÀ» »ì·È½À´Ï´Ù.\n", Color.YELLOW);
+			insertText(u.getId() + "ë‹˜ì„ ì‚´ë ¸ìŠµë‹ˆë‹¤.\n", Color.YELLOW);
 			break;
-		case 4: // ±âÀÚ
+		case 4: // ê¸°ì
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 5: // ¿µ¸Å
+		case 5: // ì˜ë§¤
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 6: // ±ºÀÎ
+		case 6: // êµ°ì¸
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 7: // Á¤Ä¡°¡
+		case 7: // ì •ì¹˜ê°€
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 8: // Å×·¯
+		case 8: // í…ŒëŸ¬
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
-		case 9: // ½ºÆÄÀÌ
+		case 9: // ìŠ¤íŒŒì´
 			send_Message("JOBS:" + u.getId() + ":");
 			break;
 		default:
@@ -884,12 +884,12 @@ public class MainView extends JFrame {
 
 	public void voteAction(User u) {
 		switch (state) {
-		case 2: // »çÇü´ë¿¡ ¿Ã¸± »ç¶÷ ÅõÇ¥
-			// NORMALVOTE:³»¾ÆÀÌµğ:¼±ÅÃÇÑid
+		case 2: // ì‚¬í˜•ëŒ€ì— ì˜¬ë¦´ ì‚¬ëŒ íˆ¬í‘œ
+			// NORMALVOTE:ë‚´ì•„ì´ë””:ì„ íƒí•œid
 			send_Message("NORMALVOTE:" + id + ":" + u.getId() + ":");
 			break;
-		case 4: // ¹ãÅõÇ¥
-			// JOBS:Á÷¾÷:¼±ÅÃÇÑid
+		case 4: // ë°¤íˆ¬í‘œ
+			// JOBS:ì§ì—…:ì„ íƒí•œid
 			nightAction(u);
 			break;
 		default:
@@ -898,17 +898,17 @@ public class MainView extends JFrame {
 		allButtonFalseEnable();
 	}
 
-	class Myaction implements ActionListener // ³»ºÎÅ¬·¡½º·Î ¾×¼Ç ÀÌº¥Æ® Ã³¸® Å¬·¡½º
+	class Myaction implements ActionListener // ë‚´ë¶€í´ë˜ìŠ¤ë¡œ ì•¡ì…˜ ì´ë²¤íŠ¸ ì²˜ë¦¬ í´ë˜ìŠ¤
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			// ¾×¼Ç ÀÌº¥Æ®°¡ sendBtnÀÏ¶§ ¶Ç´Â textField ¿¡¼¼ Enter key Ä¡¸é
+			// ì•¡ì…˜ ì´ë²¤íŠ¸ê°€ sendBtnì¼ë•Œ ë˜ëŠ” textField ì—ì„¸ Enter key ì¹˜ë©´
 			if (e.getSource() == sendBtn || e.getSource() == textField) {
 				String msg = null;
 				String msg2 = null;
 				if (textField.getText().equals("")) {
-					System.out.println("textField ºñ¾îÀÖÀ½");
+					System.out.println("textField ë¹„ì–´ìˆìŒ");
 				} else {
 					msg = String.format("MSG:%s:%s\n", id, textField.getText());
 					msg2 = String.format("[%s] : %s\n", id, textField.getText());
@@ -922,8 +922,8 @@ public class MainView extends JFrame {
 					else
 						insertText(msg2, Color.WHITE);
 
-					textField.setText(""); // ¸Ş¼¼Áö¸¦ º¸³»°í ³ª¸é ¸Ş¼¼Áö ¾²´ÂÃ¢À» ºñ¿î´Ù.
-					textField.requestFocus(); // ¸Ş¼¼Áö¸¦ º¸³»°í Ä¿¼­¸¦ ´Ù½Ã ÅØ½ºÆ® ÇÊµå·Î À§Ä¡½ÃÅ²´Ù
+					textField.setText(""); // ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ê³  ë‚˜ë©´ ë©”ì„¸ì§€ ì“°ëŠ”ì°½ì„ ë¹„ìš´ë‹¤.
+					textField.requestFocus(); // ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ê³  ì»¤ì„œë¥¼ ë‹¤ì‹œ í…ìŠ¤íŠ¸ í•„ë“œë¡œ ìœ„ì¹˜ì‹œí‚¨ë‹¤
 				}
 			}
 			if (e.getSource() == startBtn) {

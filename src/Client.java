@@ -1,4 +1,4 @@
-// Client.Java Java Chatting Client ÀÇ Nicknam, IP, Port ¹øÈ£ ÀÔ·ÂÇÏ°í Á¢¼ÓÇÏ´Â ºÎºĞ
+// Client.Java Java Chatting Client ì˜ Nicknam, IP, Port ë²ˆí˜¸ ì…ë ¥í•˜ê³  ì ‘ì†í•˜ëŠ” ë¶€ë¶„
 
 import java.awt.Color;
 import java.awt.Font;
@@ -22,18 +22,18 @@ import javax.swing.border.MatteBorder;
 public class Client extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tf_ID; // ID¸¦ ÀÔ·Â¹ŞÀ»°÷
-	private JTextField tf_PSWD; // IP¸¦ ÀÔ·Â¹ŞÀ»°÷
-	private JTextField tf_IP; // IP¸¦ ÀÔ·Â¹ŞÀ»°÷
+	private JTextField tf_ID; // IDë¥¼ ì…ë ¥ë°›ì„ê³³
+	private JTextField tf_PSWD; // IPë¥¼ ì…ë ¥ë°›ì„ê³³
+	private JTextField tf_IP; // IPë¥¼ ì…ë ¥ë°›ì„ê³³
 
 	private BufferedImage bfImage;
-	public Client() // »ı¼ºÀÚ
+	public Client() // ìƒì„±ì
 	{
 		init();
 		setVisible(true);
 	}
 
-	public void init() // È­¸é ±¸¼º
+	public void init() // í™”ë©´ êµ¬ì„±
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class Client extends JFrame {
 		title.setForeground(Color.RED);
 		contentPane.add(title);
 
-		// id ÀÔ·ÂÃ¢
+		// id ì…ë ¥ì°½
 		try {
 			bfImage = ImageIO.read(new File("img/id.png"));
 		} catch (IOException e) {
@@ -77,7 +77,7 @@ public class Client extends JFrame {
 		contentPane.add(tf_ID);
 		tf_ID.setColumns(10);
 
-		// pw ÀÔ·ÂÃ¢
+		// pw ì…ë ¥ì°½
 		try {
 			bfImage = ImageIO.read(new File("img/password.png"));
 		} catch (IOException e) {
@@ -97,7 +97,7 @@ public class Client extends JFrame {
 		tf_PSWD.setBorder(new MatteBorder(1, 1, 1, 1, Color.RED));
 		contentPane.add(tf_PSWD);
 
-		// ip ÀÔ·ÂÃ¢
+		// ip ì…ë ¥ì°½
 		try {
 			bfImage = ImageIO.read(new File("img/ip.png"));
 		} catch (IOException e) {
@@ -119,7 +119,7 @@ public class Client extends JFrame {
 		
 		
 		
-		// ·Î±×ÀÎ ¹öÆ°
+		// ë¡œê·¸ì¸ ë²„íŠ¼
 		try {
 			bfImage = ImageIO.read(new File("img/login.png"));
 		} catch (IOException e) {
@@ -142,14 +142,14 @@ public class Client extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			String id = tf_ID.getText().trim(); // °ø¹éÀÌ ÀÖÁö ¸ğ¸£´Ï °ø¹é Á¦°Å trim() »ç¿ë
+			String id = tf_ID.getText().trim(); // ê³µë°±ì´ ìˆì§€ ëª¨ë¥´ë‹ˆ ê³µë°± ì œê±° trim() ì‚¬ìš©
 			String password = tf_PSWD.getText().trim();
 			
 			//String ip = "127.0.0.1";
-			String ip= tf_IP.getText().trim(); // °ø¹éÀÌ ÀÖÀ»Áö ¸ğ¸£¹Ç·Î °ø¹éÁ¦°Å
+			String ip= tf_IP.getText().trim(); // ê³µë°±ì´ ìˆì„ì§€ ëª¨ë¥´ë¯€ë¡œ ê³µë°±ì œê±°
 			
 			int port = 30000;
-			//int port=Integer.parseInt(tf_PORT.getText().trim()); // °ø¹éÀ» Á¦°ÅÇÑ ÈÄ intÇüÀ¸·Î º¯È¯ 
+			//int port=Integer.parseInt(tf_PORT.getText().trim()); // ê³µë°±ì„ ì œê±°í•œ í›„ intí˜•ìœ¼ë¡œ ë³€í™˜ 
 			
 			MainView view = new MainView(id, password, ip, port);
 			setVisible(false);						
